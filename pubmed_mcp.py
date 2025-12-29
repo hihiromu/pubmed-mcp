@@ -17,7 +17,12 @@ NCBI_TOOL = os.getenv("NCBI_TOOL", "chatgpt-pubmed-mcp")
 # 任意: NCBI API Key（なくても動く）
 NCBI_API_KEY = os.getenv("NCBI_API_KEY")
 
-mcp = FastMCP(
+mcp = FastMCP(from starlette.responses import PlainTextResponse
+
+@mcp.custom_route("/health", methods=["GET", "HEAD"])
+async def health_check(request):
+    return PlainTextResponse("ok")
+
     name="PubMed MCP",
     instructions="Search PubMed and fetch abstracts by PMID via NCBI E-utilities.",
 )
